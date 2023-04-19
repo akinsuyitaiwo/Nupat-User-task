@@ -6,6 +6,7 @@ const config = {
   PORT: process.env.PORT,
   APP_NAME: process.env.APP_NAME,
   DATABASE_URL: process.env.DATABASE_URL,
+  JWT_KEY: process.env.JWT_KEY
 };
 
 Object.entries(config).map(([key, value]) => {

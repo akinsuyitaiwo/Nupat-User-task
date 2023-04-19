@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 import config from "./index.js";
 
-const URI = config.env.DATABASE_URL;
+const URI = config.DATABASE_URL;
 
 const connectDb = async () => {
   try {
