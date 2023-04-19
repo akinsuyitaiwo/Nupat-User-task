@@ -10,7 +10,7 @@ router.post("/signUp", createUser);
 
 router.get("users/:userId", getUserById);
 router.get("/users/", findAllUsers);
-router.get("users/sex/:sexType", verifyUser, findMaleUsers);
+router.get("users/gender/:genderType", verifyUser, findMaleUsers);
 
 router.patch("users/:userId/", updateUsers );
 

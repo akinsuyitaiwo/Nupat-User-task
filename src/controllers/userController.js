@@ -10,10 +10,10 @@ const createUser = async (req, res) => {
     if (!valid) {
       return res.status(400).send(valid.error.message);
     }
-    const {name, sex} = req.body;
+    const {name, gender} = req.body;
     const newUser = new User({
       name,
-      sex
+      gender
     })
    ; await newUser.save();
     return successMessage(res, 201, "User created succesfully.", {newUser});
@@ -49,7 +49,7 @@ const updateUsers = async ( req, res) =>{
     if (!user) {
       return errorMessage( res, 404, "user not found");
     }
-    return successMessage( res, 200, "user updated successfully", {user});
+    return successMessage(res, 200, "User updated Successfully", {result});
   } catch (error) {
     errorHandler(error, req);
     return errorMessage(res, 500, error.message);
@@ -82,13 +82,13 @@ const findAllUsers = async (req, res) =>{
 
 const findMaleUsers = async (req, res) => {
   try {
-    const {sexType} = req.params;
+    const {genderType} = req.params;
     const {_id} = req.user;
     const user = await User.findById({_id});
     if (!user) {
       return errorMessage(res, 404, "Authentication user not found");
     }
-    const maleUsers = await User.find({sex: sexType});
+    const maleUsers = await User.find({gender: genderType});
     return successMessage( res, 200, "male users successfully fetched", {maleUsers});
   } catch (error) {
     errorHandler(error, req);

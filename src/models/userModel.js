@@ -5,7 +5,7 @@ const {Schema, model} = pkg;
 const UserSchema = new Schema({
   name: {type: String},
   password: {type: String},
-  sex: {type: String, enum: ["male", "female"]}
+  gender: {type: String, enum: ["male", "female"]}
 });
 
 export default model("User", UserSchema);
