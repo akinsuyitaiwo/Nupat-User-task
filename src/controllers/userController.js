@@ -16,7 +16,7 @@ const createUser = async (req, res) => {
       sex
     })
    ; await newUser.save();
-    return successMessage(res, 201, "Account created succesfully.", {newUser});
+    return successMessage(res, 201, "User created succesfully.", {newUser});
   } catch (error) {
     errorHandler(error, req);
     return errorMessage( res, 500, error.message);
