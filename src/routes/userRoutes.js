@@ -6,13 +6,13 @@ const router = Router();
 
 
 router.post("/signUp", createUser);
-router.post("/:userId", updateUsers );
 
 
 router.get("/:userId", getUserById);
 router.get("/users", findAllUsers);
 router.get("/sex/:sexType", verifyUser, findMaleUsers);
 
+router.patch("/:userId/", updateUsers );
 
 router.delete("/:userId", deleteUser);
 
