@@ -8,13 +8,13 @@ const router = Router();
 router.post("/signUp", createUser);
 
 
-router.get("users/:userId", getUserById);
-router.get("/users/", findAllUsers);
-router.get("users/gender/:genderType", verifyUser, findMaleUsers);
+router.get("/:userId", getUserById);
+router.get("/", findAllUsers);
+router.get("/gender/:genderType", verifyUser, findMaleUsers);
 
-router.patch("users/:userId/", updateUsers );
+router.patch("/:userId/", updateUsers );
 
-router.delete("users/:userId", deleteUser);
+router.delete("/:userId", deleteUser);
 
 
 export default router;

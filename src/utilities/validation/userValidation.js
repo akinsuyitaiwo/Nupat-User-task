@@ -11,8 +11,7 @@ const options = {
 
 };
 
-// eslint-disable-next-line arrow-parens
-const validateSignUp = (signup) => {
+const validateSignUp = signup => {
   const userSignUp = Joi.object({
     name: Joi.string().min(5).max(100).required(),
     gender: Joi.string().valid("male", "female").required()
@@ -20,8 +19,7 @@ const validateSignUp = (signup) => {
   return userSignUp.validate(signup, options);
 };
 
-// eslint-disable-next-line arrow-parens
-const validateUpdate = (update) => {
+const validateUpdate = update => {
   const userUpdate = Joi.object({
     name: Joi.string().min(5).max(100).required(),
   });
@@ -29,6 +27,5 @@ const validateUpdate = (update) => {
 };
 
 export {
-  validateSignUp,
-  validateUpdate
+  validateSignUp, validateUpdate
 };

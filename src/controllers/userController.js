@@ -7,7 +7,7 @@ import generateToken from "../utilities/jwt.js";
 const createUser = async (req, res) => {
   try {
     const valid = validateSignUp(req.body);
-    if (!valid) {
+    if (valid.error) {
       return res.status(400).send(valid.error.message);
     }
     const {name, gender} = req.body;
@@ -41,15 +41,16 @@ const getUserById = async (req, res) => {
 const updateUsers = async ( req, res) =>{
   try {
     const valid = validateUpdate(req.body);
-    if (!valid) {
+    if (valid.error) {
       return errorMessage(res, 400, valid.error.mesage);
     }
     const {userId} = req.params;
-    const user = await User.findByIdAndUpdate({_id: userId});
+    const {name} = req.body;
+    const user = await User.findByIdAndUpdate({_id: userId}, {name}, {new: true});
     if (!user) {
       return errorMessage( res, 404, "user not found");
     }
-    return successMessage(res, 200, "User updated Successfully", {result});
+    return successMessage(res, 200, "User updated Successfully", {user});
   } catch (error) {
     errorHandler(error, req);
     return errorMessage(res, 500, error.message);
@@ -83,12 +84,9 @@ const findAllUsers = async (req, res) =>{
 const findMaleUsers = async (req, res) => {
   try {
     const {genderType} = req.params;
-    const {_id} = req.user;
-    const user = await User.findById({_id});
-    if (!user) {
-      return errorMessage(res, 404, "Authentication user not found");
-    }
     const maleUsers = await User.find({gender: genderType});
+    console.log(genderType);
+    console.log(maleUsers);
     return successMessage( res, 200, "male users successfully fetched", {maleUsers});
   } catch (error) {
     errorHandler(error, req);

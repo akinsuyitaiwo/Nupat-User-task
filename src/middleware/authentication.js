@@ -12,7 +12,7 @@ const verifyUser = async (req, res, next) => {
         const credentials = parts[1];
         if (/^Bearer$/i.test(scheme)) {
           const token = credentials;
-          const decoded = jwt.verify(token, config.JWT);
+          const decoded = jwt.verify(token, config.JWT_KEY);
 
           const user = await User.findById({_id: decoded._id});
           if (!user) return errorMessage(res, 404, "User account not found");
